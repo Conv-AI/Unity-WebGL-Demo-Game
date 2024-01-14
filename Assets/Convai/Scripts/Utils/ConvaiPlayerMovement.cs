@@ -60,7 +60,7 @@ namespace Convai.Scripts.Utils
         private void Start()
         {
             _characterController = GetComponent<CharacterController>();
-            LockCursor();
+            // LockCursor();
         }
 
         private void Update()

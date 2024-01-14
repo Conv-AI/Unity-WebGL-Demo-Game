@@ -7,51 +7,51 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class ConvaiInputManager : MonoBehaviour
 {
-        /// <summary>
-        ///     Input Action for player movement.
-        /// </summary>
-        [Header("Player Related")] [SerializeField]
+    /// <summary>
+    ///     Input Action for player movement.
+    /// </summary>
+    [Header("Player Related")] [SerializeField]
     private InputAction _playerMovementKeyAction;
 
-        /// <summary>
-        ///     Input Action for player jumping.
-        /// </summary>
-        [SerializeField] private InputAction _playerJumpKeyAction;
+    /// <summary>
+    ///     Input Action for player jumping.
+    /// </summary>
+    [SerializeField] private InputAction _playerJumpKeyAction;
 
-        /// <summary>
-        ///     Input Action for player running.
-        /// </summary>
-        [SerializeField] private InputAction _playerRunKeyAction;
+    /// <summary>
+    ///     Input Action for player running.
+    /// </summary>
+    [SerializeField] private InputAction _playerRunKeyAction;
 
-        /// <summary>
-        ///     Input Action for locking the cursor.
-        /// </summary>
-        [Header("General")] [SerializeField] private InputAction _cursorLockKeyAction;
+    /// <summary>
+    ///     Input Action for locking the cursor.
+    /// </summary>
+    [Header("General")] [SerializeField] private InputAction _cursorLockKeyAction;
 
-        /// <summary>
-        ///     Input Action for sending text.
-        /// </summary>
-        [SerializeField] private InputAction _textSendKeyAction;
+    /// <summary>
+    ///     Input Action for sending text.
+    /// </summary>
+    [SerializeField] private InputAction _textSendKeyAction;
 
-        /// <summary>
-        ///     Input Action for talk functionality.
-        /// </summary>
-        [SerializeField] private InputAction _talkKeyAction;
+    /// <summary>
+    ///     Input Action for talk functionality.
+    /// </summary>
+    [SerializeField] private InputAction _talkKeyAction;
 
-        /// <summary>
-        ///     Action to open the Settings Panel.
-        /// </summary>
-        [SerializeField] private InputAction _settingsKeyAction;
+    /// <summary>
+    ///     Action to open the Settings Panel.
+    /// </summary>
+    [SerializeField] private InputAction _settingsKeyAction;
 
-        /// <summary>
-        ///     Singleton instance providing easy access to the ConvaiInputManager from other scripts.
-        /// </summary>
-        public static ConvaiInputManager Instance { get; private set; }
+    /// <summary>
+    ///     Singleton instance providing easy access to the ConvaiInputManager from other scripts.
+    /// </summary>
+    public static ConvaiInputManager Instance { get; private set; }
 
-        /// <summary>
-        ///     Awake is called when the script instance is being loaded.
-        /// </summary>
-        private void Awake()
+    /// <summary>
+    ///     Awake is called when the script instance is being loaded.
+    /// </summary>
+    private void Awake()
     {
         // Ensure only one instance of ConvaiInputManager exists
         if (Instance != null)
@@ -64,10 +64,10 @@ public class ConvaiInputManager : MonoBehaviour
         Instance = this;
     }
 
-        /// <summary>
-        ///     Enable input actions when the object is enabled.
-        /// </summary>
-        private void OnEnable()
+    /// <summary>
+    ///     Enable input actions when the object is enabled.
+    /// </summary>
+    private void OnEnable()
     {
         _playerMovementKeyAction.Enable();
         _playerJumpKeyAction.Enable();
@@ -78,10 +78,10 @@ public class ConvaiInputManager : MonoBehaviour
         _settingsKeyAction.Enable();
     }
 
-        /// <summary>
-        ///     Checks if the left mouse button was pressed.
-        /// </summary>
-        public bool WasMouseLeftButtonPressed()
+    /// <summary>
+    ///     Checks if the left mouse button was pressed.
+    /// </summary>
+    public bool WasMouseLeftButtonPressed()
     {
         // Check if the left mouse button was pressed this frame
 #if ENABLE_INPUT_SYSTEM
@@ -91,10 +91,10 @@ public class ConvaiInputManager : MonoBehaviour
 #endif
     }
 
-        /// <summary>
-        ///     Gets the current mouse position.
-        /// </summary>
-        public Vector2 GetMousePosition()
+    /// <summary>
+    ///     Gets the current mouse position.
+    /// </summary>
+    public Vector2 GetMousePosition()
     {
         // Get the current mouse position
 #if ENABLE_INPUT_SYSTEM
@@ -104,10 +104,10 @@ public class ConvaiInputManager : MonoBehaviour
 #endif
     }
 
-        /// <summary>
-        ///     Gets the vertical movement of the mouse.
-        /// </summary>
-        public float GetMouseYAxis()
+    /// <summary>
+    ///     Gets the vertical movement of the mouse.
+    /// </summary>
+    public float GetMouseYAxis()
     {
         // Get the vertical movement of the mouse
 #if ENABLE_INPUT_SYSTEM
@@ -117,10 +117,10 @@ public class ConvaiInputManager : MonoBehaviour
 #endif
     }
 
-        /// <summary>
-        ///     Gets the horizontal movement of the mouse.
-        /// </summary>
-        public float GetMouseXAxis()
+    /// <summary>
+    ///     Gets the horizontal movement of the mouse.
+    /// </summary>
+    public float GetMouseXAxis()
     {
         // Get the horizontal movement of the mouse
 #if ENABLE_INPUT_SYSTEM
