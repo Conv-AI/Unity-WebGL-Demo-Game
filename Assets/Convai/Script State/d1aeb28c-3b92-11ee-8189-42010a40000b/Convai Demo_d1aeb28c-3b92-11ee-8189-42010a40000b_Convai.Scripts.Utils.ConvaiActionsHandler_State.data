@@ -1,0 +1,1 @@
+{"actionMethods":[{"action":"Move to","animationName":"Walking","actionChoice":3},{"action":"Pick up","animationName":"Picking Up","actionChoice":4},{"action":"Dance","animationName":"Dance","actionChoice":0},{"action":"Drop","animationName":"Picking Up","actionChoice":5}]}

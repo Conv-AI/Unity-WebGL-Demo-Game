@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c98f07d31af334ba49c31a867600b2, type: 3}
+  m_Name: Convai Default Notification Group
+  m_EditorClassIdentifier: 
+  SONotifications:
+  - {fileID: 11400000, guid: 5e8394cce5330644594a848783844973, type: 2}
+  - {fileID: 11400000, guid: 7a58608b2e0aa77418e15e4b4ef0a1fa, type: 2}
+  - {fileID: 11400000, guid: 374f6f70a1f7d9546926f20184467b32, type: 2}
+  - {fileID: 11400000, guid: 1dbb77ab53e0d714a9f00cba95a25a46, type: 2}

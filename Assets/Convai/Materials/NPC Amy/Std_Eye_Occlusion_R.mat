@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Std_Eye_Occlusion_R
+  m_Shader: {fileID: 4800000, guid: fd50ac59639bb2a41a4d7e5c855dea2b, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _ENABLE_FOG_ON_TRANSPARENT
+  - _SURFACE_TYPE_TRANSPARENT
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3003
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - TransparentDepthPrepass
+  - TransparentDepthPostpass
+  - TransparentBackface
+  - RayTracingPrepass
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _BottomCurve: 1.3
+    - _BottomMax: 0.30350003
+    - _BottomMin: 0.005
+    - _ExpandInner: 0.0001
+    - _ExpandLower: 0
+    - _ExpandOut: 0.0002
+    - _ExpandOuter: 0.0005
+    - _ExpandScale: 1
+    - _ExpandUpper: 0.0001
+    - _InnerMax: 0.84000003
+    - _InnerMin: 0.2
+    - _OcclusionPower: 2
+    - _OcclusionStrength: 0.66943294
+    - _OcclusionStrength2: 0.69520533
+    - _OuterMax: 0.824
+    - _OuterMin: 0.12
+    - _TearDuctPosition: 0.8
+    - _TearDuctWidth: 0.5
+    - _Top2Max: 1
+    - _Top2Min: 0.098
+    - _TopCurve: 0.82
+    - _TopMax: 0.90072
+    - _TopMin: 0.27
+    m_Colors:
+    - _OcclusionColor: {r: 0.03613593, g: 0.007221922, b: 0.0018382535, a: 1}
+  m_BuildTextureStacks: []

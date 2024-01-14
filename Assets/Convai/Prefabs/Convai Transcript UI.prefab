@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &767116372929815295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 92761816973534258}
+  - component: {fileID: 3254548583534263345}
+  - component: {fileID: 5528398268218896830}
+  m_Layer: 0
+  m_Name: Convai Transcript UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &92761816973534258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767116372929815295}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3254548583534263345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767116372929815295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119d1116f25796d4da5239037da0977f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chatBoxPrefab: {fileID: 4335130550182339671, guid: cd72c1d9bf02ebc489993d1c4bf5e521,
+    type: 3}
+  subtitlePrefab: {fileID: 3081664865783353665, guid: 1adcb97c9f11ce44f9a7368a0bbdde81,
+    type: 3}
+  questionAnswerPrefab: {fileID: 3579091036758702676, guid: a39998bccd08b1a42825de3cebc0858e,
+    type: 3}
+  characters:
+  - characterGameObject: {fileID: 0}
+    characterName: Amelia
+    characterTextColor: {r: 1, g: 0, b: 0, a: 1}
+  playerName: Player
+  playerTextColor: {r: 0.16216493, g: 1, b: 0, a: 1}
+--- !u!114 &5528398268218896830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767116372929815295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e8b13f4d5b1d4742a6a02493b450f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b33bf54ff467c742a84ac58d34105ec, type: 3}
+  m_Name: Talk Button Released Early Notification
+  m_EditorClassIdentifier: 
+  NotificationType: 3
+  Icon: {fileID: 21300000, guid: 0d41575bd5c957142870ab1c0c8c90ad, type: 3}
+  NotificationTitle: Talk Button Released Early
+  NotificationMessage: It seems like the talk button was released too soon. Please
+    hold the button down while speaking. Avoid quick taps for uninterrupted communication.
