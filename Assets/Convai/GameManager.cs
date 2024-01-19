@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     private ConvaiNPC _convaiNPC;
     private ConvaiGRPCWebAPI _grpcWebAPI;
 
-
     private void Start()
     {
         _apiKeyButton.onClick.AddListener(() => StartCoroutine(SetConvaiAPIKeyCoroutine(_apiKeyInputField.text)));
@@ -31,6 +30,11 @@ public class GameManager : MonoBehaviour
     private void OnDestroy()
     {
         if (_convaiNPC != null) _convaiNPC.OnCharacterActivated -= HandleCharacterActivated;
+    }
+
+    public void OpenURL()
+    {
+        Application.OpenURL("https://www.convai.com");
     }
 
     private IEnumerator SetConvaiAPIKeyCoroutine(string apiKey)
@@ -58,6 +62,7 @@ public class GameManager : MonoBehaviour
             if (errorMessage != null)
             {
                 errorMessage.text = "Invalid API Key!"; // Set the error message text
+                errorMessage.color = Color.red; // Set the text color to red
                 errorMessage.gameObject.SetActive(true); // Show the error message
             }
 
