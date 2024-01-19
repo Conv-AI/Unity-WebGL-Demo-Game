@@ -244,7 +244,7 @@ namespace Convai.Scripts
         ///     Finds the active input field in the scene.
         /// </summary>
         /// <returns>The active TMP_InputField if found, otherwise null.</returns>
-        private static TMP_InputField FindActiveInputField()
+        public TMP_InputField FindActiveInputField()
         {
             // Find all TMP_InputField components in the scene
             TMP_InputField[] inputFields = FindObjectsOfType<TMP_InputField>();

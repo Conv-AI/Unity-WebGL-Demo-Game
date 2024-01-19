@@ -1,4 +1,6 @@
+using Convai.Scripts;
 using Convai.Scripts.Utils;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -12,14 +14,23 @@ public class TalkButtonDurationChecker : MonoBehaviour
     private const float MIN_TALK_DURATION = 0.5f;
 
     /// <summary>
+    ///     Flag indicating whether the talk button was released prematurely.
+    /// </summary>
+    [HideInInspector] public bool IsTalkKeyReleasedEarly;
+
+    private TMP_InputField _activeInputField;
+
+    /// <summary>
     ///     Timer to track the duration of the talk button press.
     /// </summary>
     private float _timer;
 
-    /// <summary>
-    /// Flag indicating whether the talk button was released prematurely.
-    /// </summary>
-    [HideInInspector] public bool IsTalkKeyReleasedEarly;
+    private UIAppearanceSettings _uiAppearanceSettings;
+
+    private void Awake()
+    {
+        _uiAppearanceSettings = FindObjectOfType<UIAppearanceSettings>();
+    }
 
     /// <summary>
     ///     Update is called once per frame.
@@ -35,10 +46,51 @@ public class TalkButtonDurationChecker : MonoBehaviour
         // Check if the talk button is released.
         if (ConvaiInputManager.Instance.WasTalkKeyReleased())
         {
+            if (_activeInputField != null && _activeInputField.isFocused)
+            {
+                _timer = 0;
+                return;
+            }
+
             CheckTalkButtonRelease();
             // Reset the timer for the next talk action.
             _timer = 0;
         }
+    }
+
+    private void OnEnable()
+    {
+        ConvaiNPCManager.Instance.OnActiveNPCChanged += ConvaiNPCManager_OnActiveNPCChanged;
+        _uiAppearanceSettings.OnAppearanceChanged += UIAppearanceSettings_OnAppearanceChanged;
+    }
+
+    private void OnDisable()
+    {
+        ConvaiNPCManager.Instance.OnActiveNPCChanged -= ConvaiNPCManager_OnActiveNPCChanged;
+        _uiAppearanceSettings.OnAppearanceChanged -= UIAppearanceSettings_OnAppearanceChanged;
+    }
+
+    private void ConvaiNPCManager_OnActiveNPCChanged(ConvaiNPC convaiNpc)
+    {
+        if (convaiNpc == null)
+        {
+            _activeInputField = null;
+            return;
+        }
+
+        _activeInputField = convaiNpc.FindActiveInputField();
+    }
+
+    private void UIAppearanceSettings_OnAppearanceChanged()
+    {
+        ConvaiNPC convaiNpc = ConvaiNPCManager.Instance.activeConvaiNPC;
+        if (convaiNpc == null)
+        {
+            _activeInputField = null;
+            return;
+        }
+
+        _activeInputField = convaiNpc.FindActiveInputField();
     }
 
     /// <summary>
