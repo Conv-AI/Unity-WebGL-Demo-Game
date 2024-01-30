@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleCharacterActivated()
     {
-        _grpcWebAPI.SendTextData("Welcome the player");
+        // _grpcWebAPI.SendTextData("Welcome the player");
         Debug.Log("Character activated!");
     }
 

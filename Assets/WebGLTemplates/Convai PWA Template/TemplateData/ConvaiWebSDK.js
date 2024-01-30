@@ -19,6 +19,9 @@
             s.exportSymbol("proto.service.AudioConfig", null, n),
             s.exportSymbol("proto.service.BlendShapesData", null, n),
             s.exportSymbol("proto.service.FaceModel", null, n),
+            s.exportSymbol("proto.service.FeedbackRequest", null, n),
+            s.exportSymbol("proto.service.FeedbackRequest.Feedback", null, n),
+            s.exportSymbol("proto.service.FeedbackResponse", null, n),
             s.exportSymbol("proto.service.GetResponseRequest", null, n),
             s.exportSymbol(
               "proto.service.GetResponseRequest.GetResponseConfig",
@@ -44,6 +47,11 @@
             ),
             s.exportSymbol(
               "proto.service.GetResponseResponse.BehaviorTreeResponse",
+              null,
+              n
+            ),
+            s.exportSymbol(
+              "proto.service.GetResponseResponse.EmotionResponse",
               null,
               n
             ),
@@ -1530,7 +1538,7 @@
               (proto.service.GetResponseResponse.displayName =
                 "proto.service.GetResponseResponse"),
             (proto.service.GetResponseResponse.oneofGroups_ = [
-              [2, 3, 4, 5, 6, 7],
+              [2, 3, 4, 5, 6, 7, 8],
             ]),
             (proto.service.GetResponseResponse.ResponseTypeCase = {
               RESPONSE_TYPE_NOT_SET: 0,
@@ -1540,6 +1548,7 @@
               USER_QUERY: 5,
               BT_RESPONSE: 6,
               EMOTION_RESPONSE: 7,
+              INTERACTION_ID: 8,
             }),
             (proto.service.GetResponseResponse.prototype.getResponseTypeCase =
               function () {
@@ -1583,6 +1592,7 @@
                         o
                       ),
                     emotionResponse: r.Message.getFieldWithDefault(t, 7, ""),
+                    interactionId: r.Message.getFieldWithDefault(t, 8, ""),
                   };
                 return e && (s.$jspbMessageInstance = t), s;
               })),
@@ -1650,6 +1660,9 @@
                     case 7:
                       (o = t.readString()), e.setEmotionResponse(o);
                       break;
+                    case 8:
+                      (o = t.readString()), e.setInteractionId(o);
+                      break;
                     default:
                       t.skipField();
                   }
@@ -1699,7 +1712,8 @@
                       proto.service.GetResponseResponse.BehaviorTreeResponse
                         .serializeBinaryToWriter
                     ),
-                  null != (o = r.Message.getField(e, 7)) && t.writeString(7, o);
+                  null != (o = r.Message.getField(e, 7)) && t.writeString(7, o),
+                  null != (o = r.Message.getField(e, 8)) && t.writeString(8, o);
               }),
             (proto.service.GetResponseResponse.AudioResponse = function (e) {
               r.Message.initialize(
@@ -1761,6 +1775,12 @@
                       blendshapesData:
                         (o = t.getBlendshapesData()) &&
                         proto.service.BlendShapesData.toObject(e, o),
+                      emotionResponse:
+                        (o = t.getEmotionResponse()) &&
+                        proto.service.GetResponseResponse.EmotionResponse.toObject(
+                          e,
+                          o
+                        ),
                     };
                   return e && (s.$jspbMessageInstance = t), s;
                 })),
@@ -1815,6 +1835,16 @@
                         ),
                         e.setBlendshapesData(o);
                       break;
+                    case 8:
+                      (o =
+                        new proto.service.GetResponseResponse.EmotionResponse()),
+                        t.readMessage(
+                          o,
+                          proto.service.GetResponseResponse.EmotionResponse
+                            .deserializeBinaryFromReader
+                        ),
+                        e.setEmotionResponse(o);
+                      break;
                     default:
                       t.skipField();
                   }
@@ -1855,6 +1885,13 @@
                       7,
                       o,
                       proto.service.BlendShapesData.serializeBinaryToWriter
+                    ),
+                  null != (o = e.getEmotionResponse()) &&
+                    t.writeMessage(
+                      8,
+                      o,
+                      proto.service.GetResponseResponse.EmotionResponse
+                        .serializeBinaryToWriter
                     );
               }),
             (proto.service.GetResponseResponse.AudioResponse.prototype.getAudioData =
@@ -1969,6 +2006,26 @@
               function () {
                 return null != r.Message.getField(this, 7);
               }),
+            (proto.service.GetResponseResponse.AudioResponse.prototype.getEmotionResponse =
+              function () {
+                return r.Message.getWrapperField(
+                  this,
+                  proto.service.GetResponseResponse.EmotionResponse,
+                  8
+                );
+              }),
+            (proto.service.GetResponseResponse.AudioResponse.prototype.setEmotionResponse =
+              function (e) {
+                r.Message.setWrapperField(this, 8, e);
+              }),
+            (proto.service.GetResponseResponse.AudioResponse.prototype.clearEmotionResponse =
+              function () {
+                this.setEmotionResponse(void 0);
+              }),
+            (proto.service.GetResponseResponse.AudioResponse.prototype.hasEmotionResponse =
+              function () {
+                return null != r.Message.getField(this, 8);
+              }),
             (proto.service.GetResponseResponse.ActionResponse = function (e) {
               r.Message.initialize(this, e, 0, -1, null, null);
             }),
@@ -2034,6 +2091,91 @@
             (proto.service.GetResponseResponse.ActionResponse.prototype.setAction =
               function (e) {
                 r.Message.setProto3StringField(this, 1, e);
+              }),
+            (proto.service.GetResponseResponse.EmotionResponse = function (e) {
+              r.Message.initialize(this, e, 0, -1, null, null);
+            }),
+            s.inherits(
+              proto.service.GetResponseResponse.EmotionResponse,
+              r.Message
+            ),
+            s.DEBUG &&
+              !COMPILED &&
+              (proto.service.GetResponseResponse.EmotionResponse.displayName =
+                "proto.service.GetResponseResponse.EmotionResponse"),
+            r.Message.GENERATE_TO_OBJECT &&
+              ((proto.service.GetResponseResponse.EmotionResponse.prototype.toObject =
+                function (e) {
+                  return proto.service.GetResponseResponse.EmotionResponse.toObject(
+                    e,
+                    this
+                  );
+                }),
+              (proto.service.GetResponseResponse.EmotionResponse.toObject =
+                function (e, t) {
+                  var o = {
+                    emotion: r.Message.getFieldWithDefault(t, 1, ""),
+                    scale: r.Message.getFieldWithDefault(t, 2, ""),
+                  };
+                  return e && (o.$jspbMessageInstance = t), o;
+                })),
+            (proto.service.GetResponseResponse.EmotionResponse.deserializeBinary =
+              function (e) {
+                var t = new r.BinaryReader(e),
+                  o = new proto.service.GetResponseResponse.EmotionResponse();
+                return proto.service.GetResponseResponse.EmotionResponse.deserializeBinaryFromReader(
+                  o,
+                  t
+                );
+              }),
+            (proto.service.GetResponseResponse.EmotionResponse.deserializeBinaryFromReader =
+              function (e, t) {
+                for (; t.nextField() && !t.isEndGroup(); )
+                  switch (t.getFieldNumber()) {
+                    case 1:
+                      var o = t.readString();
+                      e.setEmotion(o);
+                      break;
+                    case 2:
+                      (o = t.readString()), e.setScale(o);
+                      break;
+                    default:
+                      t.skipField();
+                  }
+                return e;
+              }),
+            (proto.service.GetResponseResponse.EmotionResponse.prototype.serializeBinary =
+              function () {
+                var e = new r.BinaryWriter();
+                return (
+                  proto.service.GetResponseResponse.EmotionResponse.serializeBinaryToWriter(
+                    this,
+                    e
+                  ),
+                  e.getResultBuffer()
+                );
+              }),
+            (proto.service.GetResponseResponse.EmotionResponse.serializeBinaryToWriter =
+              function (e, t) {
+                var o = void 0;
+                (o = e.getEmotion()).length > 0 && t.writeString(1, o),
+                  (o = e.getScale()).length > 0 && t.writeString(2, o);
+              }),
+            (proto.service.GetResponseResponse.EmotionResponse.prototype.getEmotion =
+              function () {
+                return r.Message.getFieldWithDefault(this, 1, "");
+              }),
+            (proto.service.GetResponseResponse.EmotionResponse.prototype.setEmotion =
+              function (e) {
+                r.Message.setProto3StringField(this, 1, e);
+              }),
+            (proto.service.GetResponseResponse.EmotionResponse.prototype.getScale =
+              function () {
+                return r.Message.getFieldWithDefault(this, 2, "");
+              }),
+            (proto.service.GetResponseResponse.EmotionResponse.prototype.setScale =
+              function (e) {
+                r.Message.setProto3StringField(this, 2, e);
               }),
             (proto.service.GetResponseResponse.BehaviorTreeResponse = function (
               e
@@ -2394,6 +2536,32 @@
             (proto.service.GetResponseResponse.prototype.hasEmotionResponse =
               function () {
                 return null != r.Message.getField(this, 7);
+              }),
+            (proto.service.GetResponseResponse.prototype.getInteractionId =
+              function () {
+                return r.Message.getFieldWithDefault(this, 8, "");
+              }),
+            (proto.service.GetResponseResponse.prototype.setInteractionId =
+              function (e) {
+                r.Message.setOneofField(
+                  this,
+                  8,
+                  proto.service.GetResponseResponse.oneofGroups_[0],
+                  e
+                );
+              }),
+            (proto.service.GetResponseResponse.prototype.clearInteractionId =
+              function () {
+                r.Message.setOneofField(
+                  this,
+                  8,
+                  proto.service.GetResponseResponse.oneofGroups_[0],
+                  void 0
+                );
+              }),
+            (proto.service.GetResponseResponse.prototype.hasInteractionId =
+              function () {
+                return null != r.Message.getField(this, 8);
               }),
             (proto.service.VisemesData = function (e) {
               r.Message.initialize(this, e, 0, -1, null, null);
@@ -2851,6 +3019,288 @@
             (proto.service.HelloResponse.prototype.setMessage = function (e) {
               r.Message.setProto3StringField(this, 1, e);
             }),
+            (proto.service.FeedbackRequest = function (e) {
+              r.Message.initialize(this, e, 0, -1, null, null);
+            }),
+            s.inherits(proto.service.FeedbackRequest, r.Message),
+            s.DEBUG &&
+              !COMPILED &&
+              (proto.service.FeedbackRequest.displayName =
+                "proto.service.FeedbackRequest"),
+            r.Message.GENERATE_TO_OBJECT &&
+              ((proto.service.FeedbackRequest.prototype.toObject = function (
+                e
+              ) {
+                return proto.service.FeedbackRequest.toObject(e, this);
+              }),
+              (proto.service.FeedbackRequest.toObject = function (e, t) {
+                var o,
+                  s = {
+                    interactionId: r.Message.getFieldWithDefault(t, 1, ""),
+                    characterId: r.Message.getFieldWithDefault(t, 2, ""),
+                    sessionId: r.Message.getFieldWithDefault(t, 3, ""),
+                    textFeedback:
+                      (o = t.getTextFeedback()) &&
+                      proto.service.FeedbackRequest.Feedback.toObject(e, o),
+                  };
+                return e && (s.$jspbMessageInstance = t), s;
+              })),
+            (proto.service.FeedbackRequest.deserializeBinary = function (e) {
+              var t = new r.BinaryReader(e),
+                o = new proto.service.FeedbackRequest();
+              return proto.service.FeedbackRequest.deserializeBinaryFromReader(
+                o,
+                t
+              );
+            }),
+            (proto.service.FeedbackRequest.deserializeBinaryFromReader =
+              function (e, t) {
+                for (; t.nextField() && !t.isEndGroup(); )
+                  switch (t.getFieldNumber()) {
+                    case 1:
+                      var o = t.readString();
+                      e.setInteractionId(o);
+                      break;
+                    case 2:
+                      (o = t.readString()), e.setCharacterId(o);
+                      break;
+                    case 3:
+                      (o = t.readString()), e.setSessionId(o);
+                      break;
+                    case 5:
+                      (o = new proto.service.FeedbackRequest.Feedback()),
+                        t.readMessage(
+                          o,
+                          proto.service.FeedbackRequest.Feedback
+                            .deserializeBinaryFromReader
+                        ),
+                        e.setTextFeedback(o);
+                      break;
+                    default:
+                      t.skipField();
+                  }
+                return e;
+              }),
+            (proto.service.FeedbackRequest.prototype.serializeBinary =
+              function () {
+                var e = new r.BinaryWriter();
+                return (
+                  proto.service.FeedbackRequest.serializeBinaryToWriter(
+                    this,
+                    e
+                  ),
+                  e.getResultBuffer()
+                );
+              }),
+            (proto.service.FeedbackRequest.serializeBinaryToWriter = function (
+              e,
+              t
+            ) {
+              var o = void 0;
+              (o = e.getInteractionId()).length > 0 && t.writeString(1, o),
+                (o = e.getCharacterId()).length > 0 && t.writeString(2, o),
+                (o = e.getSessionId()).length > 0 && t.writeString(3, o),
+                null != (o = e.getTextFeedback()) &&
+                  t.writeMessage(
+                    5,
+                    o,
+                    proto.service.FeedbackRequest.Feedback
+                      .serializeBinaryToWriter
+                  );
+            }),
+            (proto.service.FeedbackRequest.Feedback = function (e) {
+              r.Message.initialize(this, e, 0, -1, null, null);
+            }),
+            s.inherits(proto.service.FeedbackRequest.Feedback, r.Message),
+            s.DEBUG &&
+              !COMPILED &&
+              (proto.service.FeedbackRequest.Feedback.displayName =
+                "proto.service.FeedbackRequest.Feedback"),
+            r.Message.GENERATE_TO_OBJECT &&
+              ((proto.service.FeedbackRequest.Feedback.prototype.toObject =
+                function (e) {
+                  return proto.service.FeedbackRequest.Feedback.toObject(
+                    e,
+                    this
+                  );
+                }),
+              (proto.service.FeedbackRequest.Feedback.toObject = function (
+                e,
+                t
+              ) {
+                var o = {
+                  thumbsUp: r.Message.getFieldWithDefault(t, 1, !1),
+                  feedbackText: r.Message.getFieldWithDefault(t, 2, ""),
+                };
+                return e && (o.$jspbMessageInstance = t), o;
+              })),
+            (proto.service.FeedbackRequest.Feedback.deserializeBinary =
+              function (e) {
+                var t = new r.BinaryReader(e),
+                  o = new proto.service.FeedbackRequest.Feedback();
+                return proto.service.FeedbackRequest.Feedback.deserializeBinaryFromReader(
+                  o,
+                  t
+                );
+              }),
+            (proto.service.FeedbackRequest.Feedback.deserializeBinaryFromReader =
+              function (e, t) {
+                for (; t.nextField() && !t.isEndGroup(); )
+                  switch (t.getFieldNumber()) {
+                    case 1:
+                      var o = t.readBool();
+                      e.setThumbsUp(o);
+                      break;
+                    case 2:
+                      (o = t.readString()), e.setFeedbackText(o);
+                      break;
+                    default:
+                      t.skipField();
+                  }
+                return e;
+              }),
+            (proto.service.FeedbackRequest.Feedback.prototype.serializeBinary =
+              function () {
+                var e = new r.BinaryWriter();
+                return (
+                  proto.service.FeedbackRequest.Feedback.serializeBinaryToWriter(
+                    this,
+                    e
+                  ),
+                  e.getResultBuffer()
+                );
+              }),
+            (proto.service.FeedbackRequest.Feedback.serializeBinaryToWriter =
+              function (e, t) {
+                var o = void 0;
+                (o = e.getThumbsUp()) && t.writeBool(1, o),
+                  (o = e.getFeedbackText()).length > 0 && t.writeString(2, o);
+              }),
+            (proto.service.FeedbackRequest.Feedback.prototype.getThumbsUp =
+              function () {
+                return r.Message.getFieldWithDefault(this, 1, !1);
+              }),
+            (proto.service.FeedbackRequest.Feedback.prototype.setThumbsUp =
+              function (e) {
+                r.Message.setProto3BooleanField(this, 1, e);
+              }),
+            (proto.service.FeedbackRequest.Feedback.prototype.getFeedbackText =
+              function () {
+                return r.Message.getFieldWithDefault(this, 2, "");
+              }),
+            (proto.service.FeedbackRequest.Feedback.prototype.setFeedbackText =
+              function (e) {
+                r.Message.setProto3StringField(this, 2, e);
+              }),
+            (proto.service.FeedbackRequest.prototype.getInteractionId =
+              function () {
+                return r.Message.getFieldWithDefault(this, 1, "");
+              }),
+            (proto.service.FeedbackRequest.prototype.setInteractionId =
+              function (e) {
+                r.Message.setProto3StringField(this, 1, e);
+              }),
+            (proto.service.FeedbackRequest.prototype.getCharacterId =
+              function () {
+                return r.Message.getFieldWithDefault(this, 2, "");
+              }),
+            (proto.service.FeedbackRequest.prototype.setCharacterId = function (
+              e
+            ) {
+              r.Message.setProto3StringField(this, 2, e);
+            }),
+            (proto.service.FeedbackRequest.prototype.getSessionId =
+              function () {
+                return r.Message.getFieldWithDefault(this, 3, "");
+              }),
+            (proto.service.FeedbackRequest.prototype.setSessionId = function (
+              e
+            ) {
+              r.Message.setProto3StringField(this, 3, e);
+            }),
+            (proto.service.FeedbackRequest.prototype.getTextFeedback =
+              function () {
+                return r.Message.getWrapperField(
+                  this,
+                  proto.service.FeedbackRequest.Feedback,
+                  5
+                );
+              }),
+            (proto.service.FeedbackRequest.prototype.setTextFeedback =
+              function (e) {
+                r.Message.setWrapperField(this, 5, e);
+              }),
+            (proto.service.FeedbackRequest.prototype.clearTextFeedback =
+              function () {
+                this.setTextFeedback(void 0);
+              }),
+            (proto.service.FeedbackRequest.prototype.hasTextFeedback =
+              function () {
+                return null != r.Message.getField(this, 5);
+              }),
+            (proto.service.FeedbackResponse = function (e) {
+              r.Message.initialize(this, e, 0, -1, null, null);
+            }),
+            s.inherits(proto.service.FeedbackResponse, r.Message),
+            s.DEBUG &&
+              !COMPILED &&
+              (proto.service.FeedbackResponse.displayName =
+                "proto.service.FeedbackResponse"),
+            r.Message.GENERATE_TO_OBJECT &&
+              ((proto.service.FeedbackResponse.prototype.toObject = function (
+                e
+              ) {
+                return proto.service.FeedbackResponse.toObject(e, this);
+              }),
+              (proto.service.FeedbackResponse.toObject = function (e, t) {
+                var o = {
+                  feedbackResponse: r.Message.getFieldWithDefault(t, 1, ""),
+                };
+                return e && (o.$jspbMessageInstance = t), o;
+              })),
+            (proto.service.FeedbackResponse.deserializeBinary = function (e) {
+              var t = new r.BinaryReader(e),
+                o = new proto.service.FeedbackResponse();
+              return proto.service.FeedbackResponse.deserializeBinaryFromReader(
+                o,
+                t
+              );
+            }),
+            (proto.service.FeedbackResponse.deserializeBinaryFromReader =
+              function (e, t) {
+                for (; t.nextField() && !t.isEndGroup(); )
+                  if (1 === t.getFieldNumber()) {
+                    var o = t.readString();
+                    e.setFeedbackResponse(o);
+                  } else t.skipField();
+                return e;
+              }),
+            (proto.service.FeedbackResponse.prototype.serializeBinary =
+              function () {
+                var e = new r.BinaryWriter();
+                return (
+                  proto.service.FeedbackResponse.serializeBinaryToWriter(
+                    this,
+                    e
+                  ),
+                  e.getResultBuffer()
+                );
+              }),
+            (proto.service.FeedbackResponse.serializeBinaryToWriter = function (
+              e,
+              t
+            ) {
+              var o;
+              (o = e.getFeedbackResponse()).length > 0 && t.writeString(1, o);
+            }),
+            (proto.service.FeedbackResponse.prototype.getFeedbackResponse =
+              function () {
+                return r.Message.getFieldWithDefault(this, 1, "");
+              }),
+            (proto.service.FeedbackResponse.prototype.setFeedbackResponse =
+              function (e) {
+                r.Message.setProto3StringField(this, 1, e);
+              }),
             (proto.service.FaceModel = {
               FACE_MODEL_UNSPECIFIED: 0,
               FACE_MODEL_A_2F_MODEL_NAME: 1,
@@ -2908,6 +3358,14 @@
               responseStream: !0,
               requestType: r.GetResponseRequestSingle,
               responseType: r.GetResponseResponse,
+            }),
+            (n.SubmitFeedback = {
+              methodName: "SubmitFeedback",
+              service: n,
+              requestStream: !1,
+              responseStream: !1,
+              requestType: r.FeedbackRequest,
+              responseType: r.FeedbackResponse,
             }),
             (t.ConvaiService = n),
             (i.prototype.hello = function (e, t, o) {
@@ -3078,6 +3536,30 @@
                 on: function (e, t) {
                   return o[e].push(t), this;
                 },
+                cancel: function () {
+                  (o = null), r.close();
+                },
+              };
+            }),
+            (i.prototype.submitFeedback = function (e, t, o) {
+              2 === arguments.length && (o = arguments[1]);
+              var r = s.unary(n.SubmitFeedback, {
+                request: e,
+                host: this.serviceHost,
+                metadata: t,
+                transport: this.options.transport,
+                debug: this.options.debug,
+                onEnd: function (e) {
+                  if (o)
+                    if (e.status !== s.Code.OK) {
+                      var t = new Error(e.statusMessage);
+                      (t.code = e.status),
+                        (t.metadata = e.trailers),
+                        o(t, null);
+                    } else o(null, e.message);
+                },
+              });
+              return {
                 cancel: function () {
                   (o = null), r.close();
                 },
@@ -15718,379 +16200,444 @@
             (exports.object = { extend: goog.object.extend }),
             (exports.typeOf = goog.typeOf);
         },
-        716: function (e, t, o) {
+        207: function (e, t, o) {
           "use strict";
           var r =
-              (this && this.__awaiter) ||
-              function (e, t, o, r) {
-                return new (o || (o = Promise))(function (s, n) {
-                  function i(e) {
-                    try {
-                      g(r.next(e));
-                    } catch (e) {
-                      n(e);
-                    }
+            (this && this.__awaiter) ||
+            function (e, t, o, r) {
+              return new (o || (o = Promise))(function (s, n) {
+                function i(e) {
+                  try {
+                    g(r.next(e));
+                  } catch (e) {
+                    n(e);
                   }
-                  function a(e) {
-                    try {
-                      g(r.throw(e));
-                    } catch (e) {
-                      n(e);
-                    }
-                  }
-                  function g(e) {
-                    var t;
-                    e.done
-                      ? s(e.value)
-                      : ((t = e.value),
-                        t instanceof o
-                          ? t
-                          : new o(function (e) {
-                              e(t);
-                            })).then(i, a);
-                  }
-                  g((r = r.apply(e, t || [])).next());
-                });
-              },
-            s =
-              (this && this.__generator) ||
-              function (e, t) {
-                var o,
-                  r,
-                  s,
-                  n,
-                  i = {
-                    label: 0,
-                    sent: function () {
-                      if (1 & s[0]) throw s[1];
-                      return s[1];
-                    },
-                    trys: [],
-                    ops: [],
-                  };
-                return (
-                  (n = { next: a(0), throw: a(1), return: a(2) }),
-                  "function" == typeof Symbol &&
-                    (n[Symbol.iterator] = function () {
-                      return this;
-                    }),
-                  n
-                );
-                function a(a) {
-                  return function (g) {
-                    return (function (a) {
-                      if (o)
-                        throw new TypeError("Generator is already executing.");
-                      for (; n && ((n = 0), a[0] && (i = 0)), i; )
-                        try {
-                          if (
-                            ((o = 1),
-                            r &&
-                              (s =
-                                2 & a[0]
-                                  ? r.return
-                                  : a[0]
-                                  ? r.throw || ((s = r.return) && s.call(r), 0)
-                                  : r.next) &&
-                              !(s = s.call(r, a[1])).done)
-                          )
-                            return s;
-                          switch (
-                            ((r = 0), s && (a = [2 & a[0], s.value]), a[0])
-                          ) {
-                            case 0:
-                            case 1:
-                              s = a;
-                              break;
-                            case 4:
-                              return i.label++, { value: a[1], done: !1 };
-                            case 5:
-                              i.label++, (r = a[1]), (a = [0]);
-                              continue;
-                            case 7:
-                              (a = i.ops.pop()), i.trys.pop();
-                              continue;
-                            default:
-                              if (
-                                !(
-                                  (s =
-                                    (s = i.trys).length > 0 &&
-                                    s[s.length - 1]) ||
-                                  (6 !== a[0] && 2 !== a[0])
-                                )
-                              ) {
-                                i = 0;
-                                continue;
-                              }
-                              if (
-                                3 === a[0] &&
-                                (!s || (a[1] > s[0] && a[1] < s[3]))
-                              ) {
-                                i.label = a[1];
-                                break;
-                              }
-                              if (6 === a[0] && i.label < s[1]) {
-                                (i.label = s[1]), (s = a);
-                                break;
-                              }
-                              if (s && i.label < s[2]) {
-                                (i.label = s[2]), i.ops.push(a);
-                                break;
-                              }
-                              s[2] && i.ops.pop(), i.trys.pop();
-                              continue;
-                          }
-                          a = t.call(e, i);
-                        } catch (e) {
-                          (a = [6, e]), (r = 0);
-                        } finally {
-                          o = s = 0;
-                        }
-                      if (5 & a[0]) throw a[1];
-                      return { value: a[0] ? a[1] : void 0, done: !0 };
-                    })([a, g]);
-                  };
                 }
-              };
+                function a(e) {
+                  try {
+                    g(r.throw(e));
+                  } catch (e) {
+                    n(e);
+                  }
+                }
+                function g(e) {
+                  var t;
+                  e.done
+                    ? s(e.value)
+                    : ((t = e.value),
+                      t instanceof o
+                        ? t
+                        : new o(function (e) {
+                            e(t);
+                          })).then(i, a);
+                }
+                g((r = r.apply(e, t || [])).next());
+              });
+            };
           Object.defineProperty(t, "__esModule", { value: !0 }),
             (t.AudioPlayer = void 0);
-          var n = o(422),
-            i = (function () {
-              function e(e) {
-                var t = this;
-                (this.isPlaying = !1),
-                  (this.sampleRate = e),
-                  (this.asyncQueue = new n.AsyncBlockingQueue()),
-                  (this.audio = new Audio()),
-                  (this.audio.crossOrigin = "anonymous"),
-                  (this.audio.onended = function () {
-                    return r(t, void 0, void 0, function () {
-                      var e, t;
-                      return s(this, function (o) {
-                        switch (o.label) {
-                          case 0:
-                            return [4, this.asyncQueue.dequeue()];
-                          case 1:
-                            return (
-                              null != (e = o.sent())
-                                ? this.playAudio(e)
-                                : ((this.isPlaying = !1),
-                                  null === (t = this.onStop) ||
-                                    void 0 === t ||
-                                    t.call(this),
-                                  (this.asyncQueue =
-                                    new n.AsyncBlockingQueue())),
-                              [2]
-                            );
-                        }
-                      });
-                    });
-                  }),
-                  (this.onPlay = null),
-                  (this.onStop = null);
-              }
-              return (
-                (e.prototype.playAudio = function (e) {
-                  var t;
-                  (this.audio.src = e),
-                    this.audio.load(),
-                    this.audio.play(),
-                    null === (t = this.onPlay) || void 0 === t || t.call(this),
-                    (this.isPlaying = !0);
-                }),
-                (e.prototype.addChunk = function (e, t) {
-                  if ((void 0 === t && (t = null), null != e)) {
-                    var o = new Blob([e], { type: "audio/wav" }),
-                      r = URL.createObjectURL(o);
-                    this.isPlaying
-                      ? this.asyncQueue.enqueue(r)
-                      : this.playAudio(r);
-                  } else this.asyncQueue.enqueue(null);
-                }),
-                (e.prototype.getVolume = function () {
-                  return this.audio.volume;
-                }),
-                (e.prototype.setAudioVolume = function (e) {
-                  if (e < 0 || e > 1)
-                    throw new Error(
-                      "Invalid volume value. Volume must be between 0 and 1."
-                    );
-                  this.audio.volume = e;
-                }),
-                (e.prototype.onPlayStart = function (e) {
-                  this.onPlay = e;
-                }),
-                (e.prototype.onPlayStop = function (e) {
-                  this.onStop = e;
-                }),
-                e
-              );
-            })();
-          t.AudioPlayer = i;
+          const s = o(422);
+          t.AudioPlayer = class {
+            constructor(e) {
+              (this.isPlaying = !1),
+                (this.sampleRate = e),
+                (this.asyncQueue = new s.AsyncBlockingQueue()),
+                (this.audio = new Audio()),
+                (this.audio.crossOrigin = "anonymous"),
+                (this.audio.onended = () =>
+                  r(this, void 0, void 0, function* () {
+                    var e;
+                    const t = yield this.asyncQueue.dequeue();
+                    null != t
+                      ? this.playAudio(t)
+                      : ((this.isPlaying = !1),
+                        null === (e = this.onStop) ||
+                          void 0 === e ||
+                          e.call(this),
+                        (this.asyncQueue = new s.AsyncBlockingQueue()));
+                  })),
+                (this.onPlay = null),
+                (this.onStop = null);
+            }
+            playAudio(e) {
+              var t;
+              (this.audio.src = e),
+                this.audio.load(),
+                this.audio.play(),
+                null === (t = this.onPlay) || void 0 === t || t.call(this),
+                (this.isPlaying = !0);
+            }
+            addChunk(e, t = null) {
+              if (null == e) return void this.asyncQueue.enqueue(null);
+              const o = new Blob([e], { type: "audio/wav" }),
+                r = URL.createObjectURL(o);
+              this.isPlaying ? this.asyncQueue.enqueue(r) : this.playAudio(r);
+            }
+            getVolume() {
+              return this.audio.volume;
+            }
+            setAudioVolume(e) {
+              if (e < 0 || e > 1)
+                throw new Error(
+                  "Invalid volume value. Volume must be between 0 and 1."
+                );
+              this.audio.volume = e;
+            }
+            onPlayStart(e) {
+              this.onPlay = e;
+            }
+            onPlayStop(e) {
+              this.onStop = e;
+            }
+          };
         },
-        798: (e, t, o) => {
+        382: (e, t, o) => {
           "use strict";
           Object.defineProperty(t, "__esModule", { value: !0 }),
             (t.AudioRecorder = void 0);
-          var r = o(671),
-            s = (function () {
-              function e() {
-                var e;
-                this.audioContext = new AudioContext();
-                var t = new Blob([r.audio_reocrder_processor], {
-                  type: "application/javascript",
-                });
-                (this.audioWorkletModule =
-                  null === (e = this.audioContext) || void 0 === e
-                    ? void 0
-                    : e.audioWorklet.addModule(URL.createObjectURL(t))),
-                  (this.mediaStream = null),
-                  (this.workletNode = null),
-                  navigator.mediaDevices && navigator.mediaDevices.getUserMedia
-                    ? (console.log("getUserMedia supported."),
-                      (this.userMedia = navigator.mediaDevices.getUserMedia({
-                        audio: !0,
-                      })))
-                    : console.log(
-                        "getUserMedia not supported on your browser!"
+          const r = o(693);
+          t.AudioRecorder = class {
+            constructor() {
+              var e;
+              this.audioContext = new AudioContext();
+              let t = new Blob([r.audio_reocrder_processor], {
+                type: "application/javascript",
+              });
+              (this.audioWorkletModule =
+                null === (e = this.audioContext) || void 0 === e
+                  ? void 0
+                  : e.audioWorklet.addModule(URL.createObjectURL(t))),
+                (this.mediaStream = null),
+                (this.workletNode = null),
+                navigator.mediaDevices && navigator.mediaDevices.getUserMedia
+                  ? (console.log("getUserMedia supported."),
+                    (this.userMedia = navigator.mediaDevices.getUserMedia({
+                      audio: !0,
+                    })))
+                  : console.log("getUserMedia not supported on your browser!");
+            }
+            convertoFloat32ToInt16(e) {
+              for (var t = e.length, o = new Int16Array(t); t--; )
+                o[t] = 65535 * e[t];
+              return o.buffer;
+            }
+            start(e) {
+              (this.audioCallback = e),
+                this.userMedia.then((e) => {
+                  (this.mediaStream = e),
+                    this.audioWorkletModule.then(() => {
+                      const e = this.audioContext.createMediaStreamSource(
+                        this.mediaStream
                       );
-              }
-              return (
-                (e.prototype.convertoFloat32ToInt16 = function (e) {
-                  for (var t = e.length, o = new Int16Array(t); t--; )
-                    o[t] = 65535 * e[t];
-                  return o.buffer;
-                }),
-                (e.prototype.start = function (e) {
-                  var t = this;
-                  (this.audioCallback = e),
-                    this.userMedia.then(function (e) {
-                      (t.mediaStream = e),
-                        t.audioWorkletModule.then(function () {
-                          var e = t.audioContext.createMediaStreamSource(
-                            t.mediaStream
-                          );
-                          (t.workletNode = new AudioWorkletNode(
-                            t.audioContext,
-                            "audio-recorder-processor"
-                          )),
-                            (t.workletNode.port.onmessage = function (e) {
-                              if (!e.data.command) {
-                                var o = new Float32Array(e.data),
-                                  r = t.convertoFloat32ToInt16(o);
-                                t.audioCallback(r);
-                              }
-                            }),
-                            e.connect(t.workletNode),
-                            t.audioContext.resume(),
-                            t.workletNode.port.postMessage({
-                              command: "start",
-                            });
-                        });
+                      (this.workletNode = new AudioWorkletNode(
+                        this.audioContext,
+                        "audio-recorder-processor"
+                      )),
+                        (this.workletNode.port.onmessage = (e) => {
+                          if (e.data.command) return;
+                          const t = new Float32Array(e.data),
+                            o = this.convertoFloat32ToInt16(t);
+                          this.audioCallback(o);
+                        }),
+                        e.connect(this.workletNode),
+                        this.audioContext.resume(),
+                        this.workletNode.port.postMessage({ command: "start" });
                     });
-                }),
-                (e.prototype.stop = function () {
-                  this.workletNode &&
-                    (this.workletNode.port.postMessage({ command: "stop" }),
-                    this.workletNode.disconnect(),
-                    (this.workletNode = null));
-                }),
-                e
-              );
-            })();
-          t.AudioRecorder = s;
+                });
+            }
+            stop() {
+              this.workletNode &&
+                (this.workletNode.port.postMessage({ command: "stop" }),
+                this.workletNode.disconnect(),
+                (this.workletNode = null));
+            }
+          };
         },
-        671: (e, t) => {
+        693: (e, t) => {
           "use strict";
           Object.defineProperty(t, "__esModule", { value: !0 }),
             (t.audio_reocrder_processor = void 0),
             (t.audio_reocrder_processor =
-              "class AudioRecorderProcessor extends AudioWorkletProcessor {\n  constructor() {\n    super();\n    this.recording = false;\n    this.chunkSize = 4096;\n    this.sampleAccumulator = new Float32Array(this.chunkSize);\n    this.accumulatedSamples = 0;\n    this.port.onmessage = (event) => {\n      if (!event.data.command) {\n        return;\n      }\n      if (event.data.command === 'start') {\n        this.recording = true;\n      } else if (event.data.command === 'stop') {\n        this.recording = false;\n      }\n    };\n  }\n\n  process(inputs, outputs) {\n    if (!this.recording) {\n      return true;\n    }\n    const input = inputs[0];\n    const output = outputs[0];\n    output[0].set(input[0]);\n    for (let i = 0; i < input[0].length; i++) {\n      this.sampleAccumulator[this.accumulatedSamples++] = input[0][i];\n      if (this.accumulatedSamples >= this.chunkSize) {\n        this.port.postMessage(this.sampleAccumulator.buffer);\n        this.sampleAccumulator = new Float32Array(this.chunkSize);\n        this.accumulatedSamples = 0;\n      }\n    }\n    return true;\n  }\n}\n\nregisterProcessor('audio-recorder-processor', AudioRecorderProcessor);");
+              "class AudioRecorderProcessor extends AudioWorkletProcessor {\n  constructor() {\n    super();\n    this.recording = false;\n    this.chunkSize = 4096;\n    this.sampleAccumulator = new Float32Array(this.chunkSize);\n    this.accumulatedSamples = 0;\n    this.port.onmessage = (event) => {\n      if (!event.data.command) {\n        return;\n      }\n      if (event.data.command === 'start') {\n        this.recording = true;\n      } else if (event.data.command === 'stop') {\n        this.recording = false;\n      }\n    };\n  }\n\n  process(inputs, outputs) {\n    if (!this.recording) {\n      return true;\n    }\n    const input = inputs[0];\n    const output = outputs[0];\n    // output[0].set(input[0]);\n    for (let i = 0; i < input[0].length; i++) {\n      this.sampleAccumulator[this.accumulatedSamples++] = input[0][i];\n      if (this.accumulatedSamples >= this.chunkSize) {\n        this.port.postMessage(this.sampleAccumulator.buffer);\n        this.sampleAccumulator = new Float32Array(this.chunkSize);\n        this.accumulatedSamples = 0;\n      }\n    }\n    return true;\n  }\n}\n\nregisterProcessor('audio-recorder-processor', AudioRecorderProcessor);");
         },
-        71: (e, t, o) => {
+        587: (e, t, o) => {
+          "use strict";
+          Object.defineProperty(t, "__esModule", { value: !0 }),
+            (t.ConvaiClient = void 0);
+          const r = o(387),
+            s = o(89),
+            n = o(207),
+            i = o(382);
+          t.ConvaiClient = class {
+            constructor(e) {
+              (this.apiKey = e.apiKey),
+                (this.characterId = e.characterId),
+                (this.enableAudio = e.enableAudio),
+                (this.languageCode = e.languageCode || "en-US"),
+                (this.sessionId = e.sessionId),
+                (this.enableAudio = e.enableAudio),
+                (this.disableAudioGeneration = e.disableAudioGeneration || !1),
+                (this.enableFacialData = e.enableFacialData || !1),
+                (this.enableEmotionalData = e.enableEmotionalData || !1),
+                (this.faceModel = e.faceModel || 3),
+                (this.actionConfig = new r.ActionConfig()),
+                e.actionConfig &&
+                  this.actionConfig.setActionsList(e.actionConfig.actions),
+                this.enableAudio &&
+                  ((this.audioRecorder = new i.AudioRecorder()),
+                  (this.audioPlayer = new n.AudioPlayer(44100))),
+                (console.warn = () => {});
+            }
+            validateBeforeRequest() {
+              return (
+                null != this.responseCallback ||
+                (console.log(
+                  "CONVAI(ERROR): responseCallback needs to set before making any request."
+                ),
+                !1)
+              );
+            }
+            resetSession() {
+              (this.sessionId = "-1"), (this.convaiGrpcClient = void 0);
+            }
+            setResponseCallback(e) {
+              this.responseCallback = (t) => {
+                var o, r, s, n, i, a, g, p;
+                "" !== t.getSessionId() && (this.sessionId = t.getSessionId()),
+                  this.enableAudio &&
+                  !this.disableAudioGeneration &&
+                  t.hasAudioResponse() &&
+                  !(null === (o = t.getAudioResponse()) || void 0 === o
+                    ? void 0
+                    : o.hasVisemesData())
+                    ? (null === (r = this.audioPlayer) ||
+                        void 0 === r ||
+                        r.addChunk(
+                          t.getAudioResponse().getAudioData_asU8(),
+                          null ===
+                            (n =
+                              null ===
+                                (s =
+                                  null == t ? void 0 : t.getAudioResponse()) ||
+                              void 0 === s
+                                ? void 0
+                                : s.getAudioConfig()) || void 0 === n
+                            ? void 0
+                            : n.getSampleRateHertz()
+                        ),
+                      (null === (i = t.getAudioResponse()) || void 0 === i
+                        ? void 0
+                        : i.getEndOfResponse()) &&
+                        (null === (a = this.audioPlayer) ||
+                          void 0 === a ||
+                          a.addChunk(null)))
+                    : this.enableAudio &&
+                      !this.disableAudioGeneration &&
+                      t.hasAudioResponse() &&
+                      (null === (g = t.getAudioResponse()) || void 0 === g
+                        ? void 0
+                        : g.getEndOfResponse()) &&
+                      (null === (p = this.audioPlayer) ||
+                        void 0 === p ||
+                        p.addChunk(null)),
+                  e(t);
+              };
+            }
+            sendTextChunk(e) {
+              this.validateBeforeRequest() &&
+                (null == this.convaiGrpcClient &&
+                  (this.convaiGrpcClient = new s.ConvaiGRPCClient(
+                    this.apiKey,
+                    this.characterId,
+                    this.sessionId,
+                    this.responseCallback,
+                    this.languageCode,
+                    this.disableAudioGeneration,
+                    this.actionConfig,
+                    this.enableFacialData,
+                    this.enableEmotionalData,
+                    this.faceModel
+                  )),
+                this.convaiGrpcClient.sendText(e),
+                (this.convaiGrpcClient = void 0));
+            }
+            startAudioChunk() {
+              var e;
+              this.validateBeforeRequest() &&
+                (1 == this.enableAudio
+                  ? (null == this.convaiGrpcClient &&
+                      (this.convaiGrpcClient = new s.ConvaiGRPCClient(
+                        this.apiKey,
+                        this.characterId,
+                        this.sessionId,
+                        this.responseCallback,
+                        this.languageCode,
+                        this.disableAudioGeneration,
+                        this.actionConfig,
+                        this.enableFacialData,
+                        this.enableEmotionalData,
+                        this.faceModel
+                      )),
+                    null === (e = this.audioRecorder) ||
+                      void 0 === e ||
+                      e.start((e) => {
+                        var t;
+                        null === (t = this.convaiGrpcClient) ||
+                          void 0 === t ||
+                          t.sendAudioChunk(e);
+                      }))
+                  : console.log("CONVAI(ERROR): Audio mode disabled."));
+            }
+            endAudioChunk() {
+              var e, t;
+              1 == this.enableAudio
+                ? (null === (e = this.audioRecorder) ||
+                    void 0 === e ||
+                    e.stop(),
+                  null === (t = this.convaiGrpcClient) ||
+                    void 0 === t ||
+                    t.finishSend(),
+                  (this.convaiGrpcClient = void 0))
+                : console.log("CONVAI(ERROR): Audio mode disabled.");
+            }
+            toggleAudioVolume() {
+              var e, t, o;
+              this.enableAudio
+                ? this.audioPlayer &&
+                  (0 ===
+                  (null === (e = this.audioPlayer) || void 0 === e
+                    ? void 0
+                    : e.getVolume())
+                    ? null === (t = this.audioPlayer) ||
+                      void 0 === t ||
+                      t.setAudioVolume(1)
+                    : null === (o = this.audioPlayer) ||
+                      void 0 === o ||
+                      o.setAudioVolume(0))
+                : console.log("CONVAI(ERROR): Audio mode disabled.");
+            }
+            getAudioVolume() {
+              var e;
+              if (this.audioPlayer)
+                return null === (e = this.audioPlayer) || void 0 === e
+                  ? void 0
+                  : e.getVolume();
+            }
+            onAudioPlay(e) {
+              var t;
+              null === (t = this.audioPlayer) ||
+                void 0 === t ||
+                t.onPlayStart(e);
+            }
+            onAudioStop(e) {
+              var t;
+              null === (t = this.audioPlayer) ||
+                void 0 === t ||
+                t.onPlayStop(e);
+            }
+            closeConnection() {
+              var e;
+              null === (e = this.convaiGrpcClient) ||
+                void 0 === e ||
+                e.closeConnection(),
+                console.log("Connection closed with Convai.");
+            }
+          };
+        },
+        89: (e, t, o) => {
           "use strict";
           Object.defineProperty(t, "__esModule", { value: !0 }),
             (t.ConvaiGRPCClient = void 0);
-          var r = o(37),
+          const r = o(37),
             s = o(703),
             n = o(387),
-            i = (function () {
-              function e(e, t, o, n, i, a, g, p) {
+            i = new r.grpc.Metadata();
+          i.set("source", "Web3D"),
+            (t.ConvaiGRPCClient = class {
+              constructor(e, t, o, n, i, a, g, p, l, u) {
                 (this.apiKey = e),
                   (this.characterId = t),
                   (this.sessionId = o),
                   (this.languageCode = i),
                   (this.disableAudioGeneration = a),
-                  (this.enableFacialData = g),
-                  (this.faceModel = p),
+                  (this.enableFacialData = p),
+                  (this.faceModel = u),
+                  (this.actionConfig = g),
                   (this.client = r.grpc.client(s.ConvaiService.GetResponse, {
                     host: "https://webstream.convai.com",
                     transport: r.grpc.WebsocketTransport(),
                   })),
-                  this.client.onMessage(function (e) {
+                  this.client.onMessage((e) => {
                     n(e);
                   }),
-                  this.client.onEnd(function (e, t, o) {
+                  this.client.onEnd((e, t, o) => {
                     e != r.grpc.Code.OK &&
                       console.log("GetResponse Failed: ", e, t);
                   });
               }
-              return (
-                (e.prototype.sendText = function (e) {
-                  if ("audio" != this.inputMode) {
-                    (this.inputMode = "text"), this.isStarted || this.start();
-                    var t = new n.GetResponseRequest(),
-                      o = new n.GetResponseRequest.GetResponseData();
-                    o.setTextData(e),
-                      t.setGetResponseData(o),
-                      this.client.send(t),
-                      this.client.finishSend();
-                  } else
-                    console.log("Error: Cannot send text in audio input mode.");
-                }),
-                (e.prototype.sendAudioChunk = function (e) {
-                  if ("text" != this.inputMode) {
-                    (this.inputMode = "audio"), this.isStarted || this.start();
-                    var t = new n.GetResponseRequest(),
-                      o = new n.GetResponseRequest.GetResponseData();
-                    o.setAudioData(new Uint8Array(e)),
-                      t.setGetResponseData(o),
-                      this.client.send(t);
-                  } else
-                    console.log("Error: Cannot send audio in text input mode.");
-                }),
-                (e.prototype.finishSend = function () {
-                  this.client.finishSend();
-                }),
-                (e.prototype.start = function () {
-                  this.client.start();
-                  var e = new n.GetResponseRequest(),
-                    t = new n.GetResponseRequest.GetResponseConfig();
-                  t.setApiKey(this.apiKey),
-                    t.setCharacterId(this.characterId),
-                    t.setSessionId(this.sessionId),
-                    t.setLanguageCode(this.languageCode);
-                  var o = new n.AudioConfig();
-                  o.setSampleRateHertz(44100),
-                    o.setEnableFacialData(this.enableFacialData),
-                    this.disableAudioGeneration
-                      ? o.setDisableAudio(this.disableAudioGeneration)
-                      : o.setDisableAudio(!1),
-                    o.setFaceModel(this.faceModel),
-                    t.setAudioConfig(o);
-                  var r = new n.ActionConfig();
-                  t.setActionConfig(r),
-                    e.setGetResponseConfig(t),
-                    this.client.send(e),
-                    (this.isStarted = !0);
-                }),
-                (e.prototype.closeConnection = function () {
-                  this.client.close(), (this.isStarted = !1);
-                }),
-                e
-              );
-            })();
-          t.ConvaiGRPCClient = i;
+              sendText(e) {
+                if ("audio" != this.inputMode) {
+                  (this.inputMode = "text"), this.isStarted || this.start();
+                  var t = new n.GetResponseRequest(),
+                    o = new n.GetResponseRequest.GetResponseData();
+                  o.setTextData(e),
+                    t.setGetResponseData(o),
+                    this.client.send(t),
+                    this.client.finishSend();
+                } else
+                  console.log("Error: Cannot send text in audio input mode.");
+              }
+              sendAudioChunk(e) {
+                if ("text" != this.inputMode) {
+                  (this.inputMode = "audio"), this.isStarted || this.start();
+                  var t = new n.GetResponseRequest(),
+                    o = new n.GetResponseRequest.GetResponseData();
+                  o.setAudioData(new Uint8Array(e)),
+                    t.setGetResponseData(o),
+                    this.client.send(t);
+                } else
+                  console.log("Error: Cannot send audio in text input mode.");
+              }
+              finishSend() {
+                this.client.finishSend();
+              }
+              start() {
+                this.client.start(i);
+                var e = new n.GetResponseRequest(),
+                  t = new n.GetResponseRequest.GetResponseConfig();
+                t.setApiKey(this.apiKey),
+                  t.setCharacterId(this.characterId),
+                  t.setSessionId(this.sessionId),
+                  t.setLanguageCode(this.languageCode);
+                var o = new n.AudioConfig();
+                o.setSampleRateHertz(44100),
+                  o.setEnableFacialData(this.enableFacialData),
+                  this.disableAudioGeneration
+                    ? o.setDisableAudio(this.disableAudioGeneration)
+                    : o.setDisableAudio(!1),
+                  o.setFaceModel(this.faceModel),
+                  t.setAudioConfig(o),
+                  t.setActionConfig(this.actionConfig),
+                  e.setGetResponseConfig(t),
+                  this.client.send(e),
+                  (this.isStarted = !0);
+              }
+              closeConnection() {
+                this.client.close(), (this.isStarted = !1);
+              }
+            });
+        },
+        731: (e, t, o) => {
+          "use strict";
+          Object.defineProperty(t, "__esModule", { value: !0 }),
+            (t.default = void 0);
+          var r = o(587);
+          Object.defineProperty(t, "default", {
+            enumerable: !0,
+            get: function () {
+              return r.ConvaiClient;
+            },
+          });
         },
         422: function (e, t) {
           "use strict";
@@ -16127,131 +16674,31 @@
                 });
               },
             r =
-              (this && this.__generator) ||
-              function (e, t) {
-                var o,
-                  r,
-                  s,
-                  n,
-                  i = {
-                    label: 0,
-                    sent: function () {
-                      if (1 & s[0]) throw s[1];
-                      return s[1];
-                    },
-                    trys: [],
-                    ops: [],
-                  };
-                return (
-                  (n = { next: a(0), throw: a(1), return: a(2) }),
-                  "function" == typeof Symbol &&
-                    (n[Symbol.iterator] = function () {
-                      return this;
-                    }),
-                  n
-                );
-                function a(a) {
-                  return function (g) {
-                    return (function (a) {
-                      if (o)
-                        throw new TypeError("Generator is already executing.");
-                      for (; n && ((n = 0), a[0] && (i = 0)), i; )
-                        try {
-                          if (
-                            ((o = 1),
-                            r &&
-                              (s =
-                                2 & a[0]
-                                  ? r.return
-                                  : a[0]
-                                  ? r.throw || ((s = r.return) && s.call(r), 0)
-                                  : r.next) &&
-                              !(s = s.call(r, a[1])).done)
-                          )
-                            return s;
-                          switch (
-                            ((r = 0), s && (a = [2 & a[0], s.value]), a[0])
-                          ) {
-                            case 0:
-                            case 1:
-                              s = a;
-                              break;
-                            case 4:
-                              return i.label++, { value: a[1], done: !1 };
-                            case 5:
-                              i.label++, (r = a[1]), (a = [0]);
-                              continue;
-                            case 7:
-                              (a = i.ops.pop()), i.trys.pop();
-                              continue;
-                            default:
-                              if (
-                                !(
-                                  (s =
-                                    (s = i.trys).length > 0 &&
-                                    s[s.length - 1]) ||
-                                  (6 !== a[0] && 2 !== a[0])
-                                )
-                              ) {
-                                i = 0;
-                                continue;
-                              }
-                              if (
-                                3 === a[0] &&
-                                (!s || (a[1] > s[0] && a[1] < s[3]))
-                              ) {
-                                i.label = a[1];
-                                break;
-                              }
-                              if (6 === a[0] && i.label < s[1]) {
-                                (i.label = s[1]), (s = a);
-                                break;
-                              }
-                              if (s && i.label < s[2]) {
-                                (i.label = s[2]), i.ops.push(a);
-                                break;
-                              }
-                              s[2] && i.ops.pop(), i.trys.pop();
-                              continue;
-                          }
-                          a = t.call(e, i);
-                        } catch (e) {
-                          (a = [6, e]), (r = 0);
-                        } finally {
-                          o = s = 0;
-                        }
-                      if (5 & a[0]) throw a[1];
-                      return { value: a[0] ? a[1] : void 0, done: !0 };
-                    })([a, g]);
-                  };
-                }
-              },
-            s =
               (this && this.__await) ||
               function (e) {
-                return this instanceof s ? ((this.v = e), this) : new s(e);
+                return this instanceof r ? ((this.v = e), this) : new r(e);
               },
-            n =
+            s =
               (this && this.__asyncGenerator) ||
               function (e, t, o) {
                 if (!Symbol.asyncIterator)
                   throw new TypeError("Symbol.asyncIterator is not defined.");
-                var r,
+                var s,
                   n = o.apply(e, t || []),
                   i = [];
                 return (
-                  (r = {}),
+                  (s = {}),
                   a("next"),
                   a("throw"),
                   a("return"),
-                  (r[Symbol.asyncIterator] = function () {
+                  (s[Symbol.asyncIterator] = function () {
                     return this;
                   }),
-                  r
+                  s
                 );
                 function a(e) {
                   n[e] &&
-                    (r[e] = function (t) {
+                    (s[e] = function (t) {
                       return new Promise(function (o, r) {
                         i.push([e, t, o, r]) > 1 || g(e, t);
                       });
@@ -16259,7 +16706,7 @@
                 }
                 function g(e, t) {
                   try {
-                    (o = n[e](t)).value instanceof s
+                    (o = n[e](t)).value instanceof r
                       ? Promise.resolve(o.value.v).then(p, l)
                       : u(i[0][2], o);
                   } catch (e) {
@@ -16279,85 +16726,197 @@
               };
           Object.defineProperty(t, "__esModule", { value: !0 }),
             (t.AsyncBlockingQueue = void 0);
-          var i = (function () {
-            function e() {
+          class n {
+            constructor() {
               (this.resolvers = []), (this.promises = []);
             }
-            return (
-              (e.prototype._add = function () {
-                return o(this, void 0, void 0, function () {
-                  var e,
-                    t = this;
-                  return r(this, function (o) {
-                    switch (o.label) {
-                      case 0:
-                        return (
-                          (e = new Promise(function (e) {
-                            t.resolvers.push(e);
-                          })),
-                          this.promises.push(e),
-                          [4, Promise.all(this.promises)]
-                        );
-                      case 1:
-                        return o.sent(), [2];
-                    }
-                  });
+            _add() {
+              return o(this, void 0, void 0, function* () {
+                const e = new Promise((e) => {
+                  this.resolvers.push(e);
                 });
-              }),
-              (e.prototype.enqueue = function (e) {
-                this.resolvers.length || this._add(), this.resolvers.shift()(e);
-              }),
-              (e.prototype.dequeue = function () {
-                return o(this, void 0, void 0, function () {
-                  return r(this, function (e) {
-                    switch (e.label) {
-                      case 0:
-                        return (
-                          this.promises.length || this._add(),
-                          [4, Promise.all([this.promises.shift()])]
-                        );
-                      case 1:
-                        return [2, e.sent()[0]];
-                    }
-                  });
-                });
-              }),
-              (e.prototype.isEmpty = function () {
-                return 0 === this.promises.length;
-              }),
-              (e.prototype.isBlocked = function () {
-                return this.resolvers.length > 0;
-              }),
-              Object.defineProperty(e.prototype, "length", {
-                get: function () {
-                  return this.promises.length - this.resolvers.length;
-                },
-                enumerable: !1,
-                configurable: !0,
-              }),
-              (e.prototype[Symbol.asyncIterator] = function () {
-                return n(this, arguments, function () {
-                  var e;
-                  return r(this, function (t) {
-                    switch (t.label) {
-                      case 0:
-                        return [4, s(this.dequeue())];
-                      case 1:
-                        return (e = t.sent()), [4, s(e)];
-                      case 2:
-                        return [4, t.sent()];
-                      case 3:
-                        return t.sent(), [3, 0];
-                      case 4:
-                        return [2];
-                    }
-                  });
-                });
-              }),
-              e
-            );
-          })();
-          t.AsyncBlockingQueue = i;
+                this.promises.push(e), yield Promise.all(this.promises);
+              });
+            }
+            enqueue(e) {
+              this.resolvers.length || this._add(), this.resolvers.shift()(e);
+            }
+            dequeue() {
+              return o(this, void 0, void 0, function* () {
+                return (
+                  this.promises.length || this._add(),
+                  (yield Promise.all([this.promises.shift()]))[0]
+                );
+              });
+            }
+            isEmpty() {
+              return 0 === this.promises.length;
+            }
+            isBlocked() {
+              return this.resolvers.length > 0;
+            }
+            get length() {
+              return this.promises.length - this.resolvers.length;
+            }
+            [Symbol.asyncIterator]() {
+              return s(this, arguments, function* () {
+                for (;;) {
+                  const e = yield r(this.dequeue());
+                  yield yield r(e);
+                }
+              });
+            }
+          }
+          t.AsyncBlockingQueue = n;
+        },
+        585: (e, t) => {
+          "use strict";
+          Object.defineProperty(t, "__esModule", { value: !0 }),
+            (t.OvrToMorph = void 0);
+          const o = {
+              0: "sil",
+              1: "PP",
+              2: "FF",
+              3: "TH",
+              4: "DD",
+              5: "KK",
+              6: "CH",
+              7: "SS",
+              8: "NN",
+              9: "RR",
+              10: "AA",
+              11: "E",
+              12: "I",
+              13: "O",
+              14: "U",
+            },
+            r = {
+              sil: {
+                V_Explosive: 0,
+                V_Lip_Open: 0,
+                V_Dental_Lip: 0,
+                V_Tight_O: 0,
+                V_Tongue_Out: 0,
+                Mouth_Drop_Lower: 0,
+                Mouth_Shrug_Upper: 0,
+                Open_Jaw: 0,
+                Tongue: 0,
+              },
+              PP: { V_Explosive: 1 },
+              FF: { V_Dental_Lip: 1 },
+              TH: {
+                Mouth_Drop_Lower: 0.5,
+                V_Tongue_Out: 0.5,
+                Open_Jaw: 0.2,
+                Tongue: 0.1,
+              },
+              DD: {
+                Mouth_Drop_Lower: 0.2,
+                Mouth_Shrug_Upper: 0.5,
+                Open_Jaw: 0.1,
+                Tongue: 0,
+              },
+              KK: {
+                Mouth_Drop_Lower: 0.5,
+                Mouth_Shrug_Upper: 0.1,
+                Open_Jaw: 0.5,
+                Tongue: 0,
+              },
+              CH: {
+                Mouth_Drop_Lower: 0.7,
+                Mouth_Shrug_Upper: 0.1,
+                V_Lip_Open: 1,
+                Open_Jaw: 0,
+                Tongue: 0,
+              },
+              SS: {
+                Mouth_Drop_Lower: 0.5,
+                Mouth_Shrug_Upper: 1,
+                Open_Jaw: 0,
+                Tongue: 0,
+              },
+              NN: {
+                Mouth_Drop_Lower: 0.5,
+                V_Tongue_Out: 0.5,
+                Mouth_Shrug_Upper: 1,
+                Open_Jaw: 0.2,
+                Tongue: 0.2,
+              },
+              RR: {
+                Mouth_Drop_Lower: 0.5,
+                V_Tongue_Out: 0.4,
+                Mouth_Shrug_Upper: 1,
+                Open_Jaw: 0.2,
+                Tongue: 0.15,
+              },
+              AA: { Mouth_Shrug_Upper: 1, Open_Jaw: 1, Tongue: 0 },
+              E: {
+                Mouth_Drop_Lower: 0.7,
+                Mouth_Shrug_Upper: 0.3,
+                Open_Jaw: 0.2,
+                Tongue: 0,
+              },
+              I: {
+                Mouth_Drop_Lower: 0.7,
+                Mouth_Shrug_Upper: 0.5,
+                Mouth_Press_R: 0,
+                Mouth_Press_L: 0,
+                Open_Jaw: 0.3,
+                Tongue: 0,
+              },
+              O: { V_Tight_O: 0.9, Open_Jaw: 0.8, Tongue: 0 },
+              U: { V_Tight_O: 1, Open_Jaw: 0.3, Tongue: 0 },
+            };
+          t.OvrToMorph = (e, t) => {
+            if ("object" == typeof e) {
+              const s = {
+                Mouth_Drop_Lower: 0,
+                Mouth_Shrug_Upper: 0.17,
+                Mouth_Press_R: 0,
+                Mouth_Press_L: 0,
+                V_Explosive: 0,
+                V_Lip_Open: 0,
+                V_Dental_Lip: 0,
+                V_Tight_O: 0,
+                V_Tongue_Out: 0,
+                Open_Jaw: 0,
+                Tongue: 0,
+              };
+              for (const t in e) {
+                const n = e[t],
+                  i = r[o[t]];
+                for (const e in i) {
+                  const t = i[e] * n;
+                  s[e] = s[e] + t;
+                }
+              }
+              t.current.push(s);
+            }
+          };
+        },
+        607: function (e, t, o) {
+          "use strict";
+          var r =
+            (this && this.__importDefault) ||
+            function (e) {
+              return e && e.__esModule ? e : { default: e };
+            };
+          Object.defineProperty(t, "__esModule", { value: !0 }),
+            (t.ConvaiClient = t.OvrToMorph = void 0);
+          var s = o(585);
+          Object.defineProperty(t, "OvrToMorph", {
+            enumerable: !0,
+            get: function () {
+              return s.OvrToMorph;
+            },
+          });
+          var n = o(731);
+          Object.defineProperty(t, "ConvaiClient", {
+            enumerable: !0,
+            get: function () {
+              return r(n).default;
+            },
+          });
         },
       },
       __webpack_module_cache__ = {};
@@ -16383,192 +16942,7 @@
         if ("object" == typeof window) return window;
       }
     })();
-    var __webpack_exports__ = {};
-    return (
-      (() => {
-        "use strict";
-        var e = __webpack_exports__;
-        Object.defineProperty(e, "__esModule", { value: !0 }),
-          (e.ConvaiClient = void 0);
-        var t = __webpack_require__(71),
-          o = __webpack_require__(716),
-          r = __webpack_require__(798),
-          s = (function () {
-            function e(e) {
-              (this.apiKey = e.apiKey),
-                (this.characterId = e.characterId),
-                (this.enableAudio = e.enableAudio),
-                (this.languageCode = e.languageCode || "en-US"),
-                (this.sessionId = e.sessionId),
-                (this.enableAudio = e.enableAudio),
-                (this.disableAudioGeneration = e.disableAudioGeneration || !1),
-                (this.enableFacialData = e.enableFacialData || !1),
-                (this.faceModel = e.faceModel || 3),
-                this.enableAudio &&
-                  ((this.audioRecorder = new r.AudioRecorder()),
-                  (this.audioPlayer = new o.AudioPlayer(24e3))),
-                (console.warn = function () {});
-            }
-            return (
-              (e.prototype.validateBeforeRequest = function () {
-                return (
-                  null != this.responseCallback ||
-                  (console.log(
-                    "CONVAI(ERROR): responseCallback needs to set before making any request."
-                  ),
-                  !1)
-                );
-              }),
-              (e.prototype.resetSession = function () {
-                (this.sessionId = "-1"), (this.convaiGrpcClient = void 0);
-              }),
-              (e.prototype.setResponseCallback = function (e) {
-                var t = this;
-                this.responseCallback = function (o) {
-                  var r, s, n, i, a, g, p, l;
-                  "" !== o.getSessionId() && (t.sessionId = o.getSessionId()),
-                    t.enableAudio &&
-                    !t.disableAudioGeneration &&
-                    o.hasAudioResponse() &&
-                    !(null === (r = o.getAudioResponse()) || void 0 === r
-                      ? void 0
-                      : r.hasVisemesData())
-                      ? (null === (s = t.audioPlayer) ||
-                          void 0 === s ||
-                          s.addChunk(
-                            o.getAudioResponse().getAudioData_asU8(),
-                            null ===
-                              (i =
-                                null ===
-                                  (n =
-                                    null == o
-                                      ? void 0
-                                      : o.getAudioResponse()) || void 0 === n
-                                  ? void 0
-                                  : n.getAudioConfig()) || void 0 === i
-                              ? void 0
-                              : i.getSampleRateHertz()
-                          ),
-                        (null === (a = o.getAudioResponse()) || void 0 === a
-                          ? void 0
-                          : a.getEndOfResponse()) &&
-                          (null === (g = t.audioPlayer) ||
-                            void 0 === g ||
-                            g.addChunk(null)))
-                      : t.enableAudio &&
-                        !t.disableAudioGeneration &&
-                        o.hasAudioResponse() &&
-                        (null === (p = o.getAudioResponse()) || void 0 === p
-                          ? void 0
-                          : p.getEndOfResponse()) &&
-                        (null === (l = t.audioPlayer) ||
-                          void 0 === l ||
-                          l.addChunk(null)),
-                    e(o);
-                };
-              }),
-              (e.prototype.sendTextChunk = function (e) {
-                this.validateBeforeRequest() &&
-                  (null == this.convaiGrpcClient &&
-                    (this.convaiGrpcClient = new t.ConvaiGRPCClient(
-                      this.apiKey,
-                      this.characterId,
-                      this.sessionId,
-                      this.responseCallback,
-                      this.languageCode,
-                      this.disableAudioGeneration,
-                      this.enableFacialData,
-                      this.faceModel
-                    )),
-                  this.convaiGrpcClient.sendText(e),
-                  (this.convaiGrpcClient = void 0));
-              }),
-              (e.prototype.startAudioChunk = function () {
-                var e,
-                  o = this;
-                this.validateBeforeRequest() &&
-                  (1 == this.enableAudio
-                    ? (null == this.convaiGrpcClient &&
-                        (this.convaiGrpcClient = new t.ConvaiGRPCClient(
-                          this.apiKey,
-                          this.characterId,
-                          this.sessionId,
-                          this.responseCallback,
-                          this.languageCode,
-                          this.disableAudioGeneration,
-                          this.enableFacialData,
-                          this.faceModel
-                        )),
-                      null === (e = this.audioRecorder) ||
-                        void 0 === e ||
-                        e.start(function (e) {
-                          var t;
-                          null === (t = o.convaiGrpcClient) ||
-                            void 0 === t ||
-                            t.sendAudioChunk(e);
-                        }))
-                    : console.log("CONVAI(ERROR): Audio mode disabled."));
-              }),
-              (e.prototype.endAudioChunk = function () {
-                var e, t;
-                1 == this.enableAudio
-                  ? (null === (e = this.audioRecorder) ||
-                      void 0 === e ||
-                      e.stop(),
-                    null === (t = this.convaiGrpcClient) ||
-                      void 0 === t ||
-                      t.finishSend(),
-                    (this.convaiGrpcClient = void 0))
-                  : console.log("CONVAI(ERROR): Audio mode disabled.");
-              }),
-              (e.prototype.toggleAudioVolume = function () {
-                var e, t, o;
-                this.enableAudio
-                  ? this.audioPlayer &&
-                    (0 ===
-                    (null === (e = this.audioPlayer) || void 0 === e
-                      ? void 0
-                      : e.getVolume())
-                      ? null === (t = this.audioPlayer) ||
-                        void 0 === t ||
-                        t.setAudioVolume(1)
-                      : null === (o = this.audioPlayer) ||
-                        void 0 === o ||
-                        o.setAudioVolume(0))
-                  : console.log("CONVAI(ERROR): Audio mode disabled.");
-              }),
-              (e.prototype.getAudioVolume = function () {
-                var e;
-                if (this.audioPlayer)
-                  return null === (e = this.audioPlayer) || void 0 === e
-                    ? void 0
-                    : e.getVolume();
-              }),
-              (e.prototype.onAudioPlay = function (e) {
-                var t;
-                null === (t = this.audioPlayer) ||
-                  void 0 === t ||
-                  t.onPlayStart(e);
-              }),
-              (e.prototype.onAudioStop = function (e) {
-                var t;
-                null === (t = this.audioPlayer) ||
-                  void 0 === t ||
-                  t.onPlayStop(e);
-              }),
-              (e.prototype.closeConnection = function () {
-                var e;
-                null === (e = this.convaiGrpcClient) ||
-                  void 0 === e ||
-                  e.closeConnection(),
-                  console.log("Connection closed with Convai.");
-              }),
-              e
-            );
-          })();
-        e.ConvaiClient = s;
-      })(),
-      __webpack_exports__
-    );
+    var __webpack_exports__ = __webpack_require__(607);
+    return __webpack_exports__;
   })()
 );
