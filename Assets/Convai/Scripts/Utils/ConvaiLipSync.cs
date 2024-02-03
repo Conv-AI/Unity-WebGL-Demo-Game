@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 
 public class ConvaiLipSync : MonoBehaviour
@@ -17,6 +16,7 @@ public class ConvaiLipSync : MonoBehaviour
     [SerializeField] public int lipBlendShapeIndex;
     [SerializeField] public int teethBlendShapeIndex;
     [SerializeField] public GameObject lowerJawGameObject;
+    [HideInInspector] public float[] audioSamples; // Not used in the optimized version
 
     private AudioSource _audioSource; // The audio source component
     private Vector3 _baseJawPosition; // The initial position of the lower jaw
@@ -87,7 +87,9 @@ public class ConvaiLipSync : MonoBehaviour
             float[] windowSamples = new float[sampleCount];
             _audioSource.clip.GetData(windowSamples, startSample);
 
-            float sum = windowSamples.Sum(Mathf.Abs);
+            float sum = 0f;
+            for (int i = 0; i < windowSamples.Length; i++)
+                sum += Mathf.Abs(windowSamples[i]); // Use absolute value to get the magnitude of the amplitude
 
             float averageAmplitude = sum / windowSamples.Length;
             return Mathf.Clamp(averageAmplitude * 1000f, 10, 150);
@@ -105,7 +107,7 @@ public class ConvaiLipSync : MonoBehaviour
         switch (characterType)
         {
             case CharacterType.Reallusion:
-                faceMeshRenderer.SetBlendShapeWeight(lipBlendShapeIndex, _blendShapeWeight);
+                faceMeshRenderer.SetBlendShapeWeight(lipBlendShapeIndex, _blendShapeWeight * 1.5f);
                 // Calculate new jaw position based on amplitude
                 float jawMovement = _blendShapeWeight / 10000f;
                 Vector3 targetJawPosition = _baseJawPosition;
@@ -113,7 +115,7 @@ public class ConvaiLipSync : MonoBehaviour
 
                 // Smoothly interpolate to the new jaw position
                 lowerJawGameObject.transform.localPosition = Vector3.Lerp(lowerJawGameObject.transform.localPosition,
-                    targetJawPosition, Time.deltaTime * SMOOTH_SPEED);
+                    targetJawPosition, Time.deltaTime * SMOOTH_SPEED * 2f);
 
                 if (!_audioSource.isPlaying)
                     lowerJawGameObject.transform.localPosition = Vector3.Lerp(
