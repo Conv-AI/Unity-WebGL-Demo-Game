@@ -192,6 +192,7 @@ namespace Convai.Scripts
                 {
                     UpdateActionConfig();
                     StartListening();
+                    Debug.Log("Workssss");
                 }
                 else
                 {
@@ -205,6 +206,7 @@ namespace Convai.Scripts
                 if (IsCharacterActive && (_currentInputField == null || !_currentInputField.isFocused))
                 {
                     StopListening();
+                    Debug.Log("NOT WORKS");
                 }
             }
         }

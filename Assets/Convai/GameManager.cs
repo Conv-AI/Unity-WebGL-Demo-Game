@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private ConvaiNPC _convaiNPC;
     private ConvaiGRPCWebAPI _grpcWebAPI;
 
+    public Action OnValidationCompleted;
     private void Start()
     {
         _apiKeyButton.onClick.AddListener(() => StartCoroutine(SetConvaiAPIKeyCoroutine(_apiKeyInputField.text)));
@@ -52,9 +53,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("API Key set successfully!");
             _grpcWebAPI.APIKey = apiKey;
             startPanel.SetActive(false);
-
+            OnValidationCompleted?.Invoke();
             // Lock the mouse cursor after successful API key validation
-            LockMouseCursor(true);
         }
         else
         {
@@ -65,24 +65,6 @@ public class GameManager : MonoBehaviour
                 errorMessage.color = Color.red; // Set the text color to red
                 errorMessage.gameObject.SetActive(true); // Show the error message
             }
-
-            // Keep the mouse cursor unlocked if the API key is invalid
-            LockMouseCursor(false);
-        }
-    }
-
-    // Call this method to lock or unlock the mouse cursor
-    private void LockMouseCursor(bool isLocked)
-    {
-        if (isLocked)
-        {
-            Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
-            Cursor.visible = false; // Hide the cursor
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None; // Free the cursor
-            Cursor.visible = true; // Show the cursor
         }
     }
 

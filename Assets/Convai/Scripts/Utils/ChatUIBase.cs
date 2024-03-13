@@ -98,6 +98,7 @@ namespace Convai.Scripts.Utils
         /// <param name="isSpeaking">Whether the player is currently speaking.</param>
         private void OnPlayerSpeakingChanged(bool isSpeaking)
         {
+            if (recordingMarker == null) return;
             if (recordingMarker.TryGetComponent(out Image image))
                 image.color = new Color(image.color.r, image.color.g, image.color.b, isSpeaking ? 1.0f : 0.5f);
             else

@@ -59,6 +59,8 @@ public class ConvaiGRPCWebAPI : MonoBehaviour
             Debug.LogError(
                 "No API Key data found. Please complete the Convai Setup. In the Menu Bar, click Convai > Setup.");
         }
+
+        Debug.Log("Initalized ConvaiGRPCWebAPI");
     }
 
     /// <summary>
@@ -75,6 +77,7 @@ public class ConvaiGRPCWebAPI : MonoBehaviour
     /// <param name="newActiveNPC"> Gets the new active NPC </param>
     private void HandleActiveNPCChanged(ConvaiNPC newActiveNPC)
     {
+        if (newActiveNPC == null) return;
         activeConvaiNPC = newActiveNPC;
         InitializeConvaiClient(activeConvaiNPC.characterID, true, false);
     }
@@ -86,7 +89,7 @@ public class ConvaiGRPCWebAPI : MonoBehaviour
     {
         int convertedSize = source.Length / sizeof(short);
         float[] data = new float[convertedSize];
-
+ 
         int byteIdx = 0;
         int dataIdx = 0;
 
@@ -156,6 +159,7 @@ public class ConvaiGRPCWebAPI : MonoBehaviour
     /// </summary>
     public void InitializeConvaiClient(string characterID, bool enableAudioRecorder, bool enableAudioPlayer)
     {
+        Debug.Log("INITIALIZING CONVAI CLIENT");
         Debug.Log("Char ID " + activeConvaiNPC.characterID);
         initializeConvaiClient(APIKey, characterID, enableAudioRecorder, enableAudioPlayer);
     }
@@ -165,6 +169,7 @@ public class ConvaiGRPCWebAPI : MonoBehaviour
     /// </summary>
     public void StartRecordAudio()
     {
+        Debug.Log("Goooodd");
         OnPlayerSpeakingChanged?.Invoke(true);
         startAudioChunk();
     }
@@ -174,6 +179,7 @@ public class ConvaiGRPCWebAPI : MonoBehaviour
     /// </summary>
     public void StopRecordAudio()
     {
+        Debug.Log("Baaddd");
         endAudioChunk();
         OnPlayerSpeakingChanged?.Invoke(false);
     }

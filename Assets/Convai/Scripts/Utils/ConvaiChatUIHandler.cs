@@ -14,8 +14,8 @@ namespace Convai.Scripts.Utils
         [ReadOnly] [Tooltip("Display name of the NPC")]
         public string characterName = "Character";
 
-        [ColorUsage(true)] [Tooltip("Color of the NPC text. Alpha value will be ignored.")]
-        [SerializeField] private Color characterTextColor = Color.red;
+        [ColorUsage(true)] [Tooltip("Color of the NPC text. Alpha value will be ignored.")] [SerializeField]
+        private Color characterTextColor = Color.red;
 
         public Color CharacterTextColor
         {
@@ -42,13 +42,17 @@ namespace Convai.Scripts.Utils
         }
 
         [Header("UI Prefabs")] [Tooltip("Prefab for the chat box UI.")]
-        public GameObject chatBoxPrefab;
+        public GameObject PCChatBoxPrefab;
 
         [Tooltip("Prefab for the subtitle UI.")]
-        public GameObject subtitlePrefab;
+        public GameObject PCSubtitlePrefab;
 
         [Tooltip("Prefab for the question-answer UI.")]
-        public GameObject questionAnswerPrefab;
+        public GameObject PCQuestionAnswerPrefab;
+
+        public GameObject MobileChatBoxPrefab;
+        public GameObject MobileSubtitlePrefab;
+        public GameObject MobileQAPrefab;
 
         [Header("Character List")] [Tooltip("List of characters.")]
         public List<Character> characters = new();
@@ -189,9 +193,18 @@ namespace Convai.Scripts.Utils
         /// </summary>
         private void InitializeUIStrategies()
         {
-            InitializeUI(chatBoxPrefab, UIType.ChatBox);
-            InitializeUI(questionAnswerPrefab, UIType.QuestionAnswer);
-            InitializeUI(subtitlePrefab, UIType.Subtitle);
+            if (WebGLPlatformRecognizer.Instance.IsMobilePlatform())
+            {
+                InitializeUI(MobileChatBoxPrefab, UIType.ChatBox);
+                InitializeUI(MobileQAPrefab, UIType.QuestionAnswer);
+                InitializeUI(MobileSubtitlePrefab, UIType.Subtitle);
+            }
+            else
+            {
+                InitializeUI(PCChatBoxPrefab, UIType.ChatBox);
+                InitializeUI(PCQuestionAnswerPrefab, UIType.QuestionAnswer);
+                InitializeUI(PCSubtitlePrefab, UIType.Subtitle);
+            }
         }
 
         private void InitializeUI(GameObject uiPrefab, UIType uiType)
@@ -248,7 +261,7 @@ namespace Convai.Scripts.Utils
         {
             try
             {
-                if (chatBoxPrefab == null || subtitlePrefab == null || questionAnswerPrefab == null)
+                if (PCChatBoxPrefab == null || PCSubtitlePrefab == null || PCQuestionAnswerPrefab == null || MobileChatBoxPrefab == null || MobileSubtitlePrefab == null || MobileQAPrefab == null)
                     throw new InvalidOperationException("All UI prefabs must be assigned in the inspector.");
             }
             catch (InvalidOperationException ex)

@@ -26,7 +26,8 @@ public class ConvaiInputManager : MonoBehaviour
     /// <summary>
     ///     Input Action for locking the cursor.
     /// </summary>
-    [Header("General")] [SerializeField] private InputAction _cursorLockKeyAction;
+    [Header("General")] 
+    public InputAction _cursorLockKeyAction;
 
     /// <summary>
     ///     Input Action for sending text.

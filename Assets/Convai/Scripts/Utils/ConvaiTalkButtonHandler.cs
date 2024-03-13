@@ -124,13 +124,13 @@ namespace Convai.Scripts.Utils
 
         private void IncreaseScale()
         {
-            Vector3 targetScale = new Vector3(1.25f, 1.25f, 1.25f);
+            Vector3 targetScale = new Vector3(0.75f, 0.75f, 0.75f);
             transform.localScale = Vector3.Lerp(transform.localScale, targetScale, 1f);
         }
 
         private void DecreaseScale()
         {
-            Vector3 targetScale = new Vector3(1, 1, 1);
+            Vector3 targetScale = new Vector3(0.6f, 0.6f, 0.6f);
             transform.localScale = Vector3.Lerp(transform.localScale, targetScale, 1f);
         }
     }
