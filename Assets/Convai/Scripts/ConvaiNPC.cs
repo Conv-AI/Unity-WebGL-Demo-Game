@@ -202,7 +202,10 @@ namespace Convai.Scripts
             // Stop recording audio when the T key is released
             else if (ConvaiInputManager.Instance.WasTalkKeyReleased())
             {
-                StopListening();
+                if (IsCharacterActive && (_currentInputField == null || !_currentInputField.isFocused))
+                {
+                    StopListening();
+                }
             }
         }
 
