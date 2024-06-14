@@ -29,7 +29,6 @@ QualitySettings:
     billboardsFaceCameraPosition: 1
     useLegacyDetailDistribution: 1
     vSyncCount: 0
-    realtimeGICPUUsage: 50
     lodBias: 0.25
     maximumLODLevel: 1
     enableLODCrossFade: 0
@@ -82,7 +81,6 @@ QualitySettings:
     billboardsFaceCameraPosition: 1
     useLegacyDetailDistribution: 1
     vSyncCount: 0
-    realtimeGICPUUsage: 100
     lodBias: 1
     maximumLODLevel: 0
     enableLODCrossFade: 1
@@ -133,7 +131,6 @@ QualitySettings:
     billboardsFaceCameraPosition: 0
     useLegacyDetailDistribution: 1
     vSyncCount: 0
-    realtimeGICPUUsage: 25
     lodBias: 0.25
     maximumLODLevel: 1
     enableLODCrossFade: 1
@@ -187,7 +184,6 @@ QualitySettings:
     billboardsFaceCameraPosition: 1
     useLegacyDetailDistribution: 1
     vSyncCount: 0
-    realtimeGICPUUsage: 100
     lodBias: 2
     maximumLODLevel: 0
     enableLODCrossFade: 1
