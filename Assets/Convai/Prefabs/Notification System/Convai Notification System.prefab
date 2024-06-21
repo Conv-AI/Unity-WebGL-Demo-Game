@@ -35,6 +35,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3109508493576123176}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -130,12 +131,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiNotificationPrefab: {fileID: 1403518103547408502, guid: 6c81d849dc312a849996cafab7acb17d,
     type: 3}
-  _spacing: 100
-  _activeNotificationPos: {x: 0, y: 0}
-  _deactivatedNotificationPos: {x: 0, y: 0}
+  _spacing: 110
+  _activeNotificationPos: {x: 0, y: -100}
+  _deactivatedNotificationPos: {x: 500, y: -100}
   _activeDuration: 4
   _slipDuration: 0.3
-  _delay: 0.3
+  _delay: 0.5
   _slipAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -193,7 +194,7 @@ GameObject:
   - component: {fileID: 4234802759100365891}
   - component: {fileID: 3800160891662476542}
   - component: {fileID: 8529064131418382159}
-  - component: {fileID: 2938897245034559178}
+  - component: {fileID: 541532203280720627}
   m_Layer: 0
   m_Name: Convai Notification System
   m_TagString: Untagged
@@ -208,7 +209,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8014874466099428634}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -216,6 +216,7 @@ Transform:
   m_Children:
   - {fileID: 587356852343037145}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4234802759100365891
 MonoBehaviour:
@@ -254,8 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce5db0c0354de754f99bd35c9f7fb96a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsTalkKeyReleasedEarly: 0
---- !u!114 &2938897245034559178
+  isTalkKeyReleasedEarly: 0
+--- !u!114 &541532203280720627
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -264,6 +265,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8014874466099428634}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faa7ebf89b9f4bf2b3b02486c4c00fdc, type: 3}
+  m_Script: {fileID: 11500000, guid: bd477455ea76a6c46b64614d87aa55b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
